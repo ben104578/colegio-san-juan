@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Colegio San Juan</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #eef3f7;
+    }
+    body { display: flex; flex-direction: column; min-height: 100vh; }
+    .container-fluid { flex: 1; display: flex; }
+
+    .sidebar {
+      width: 230px;
+      background-color: #004085;
+      color: white;
+      padding: 20px 10px;
+      height: 100vh;
+      position: fixed;
+      left: 0; top: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 1.5px;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      width: 100%;
+    }
+    .sidebar li {
+      padding: 12px 20px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      user-select: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+    .sidebar li:hover, .sidebar li.active {
+      background-color: #0056b3;
+      transform: translateX(5px);
+    }
+
+    .main-content {
+      margin-left: 230px;
+      padding: 40px 30px;
+      width: 100%;
+      animation: fadeIn 1s ease-in-out;
+      min-height: calc(100vh - 70px);
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+    .card:hover { transform: scale(1.03); }
+
+    footer {
+      background-color: #004085;
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-top: auto;
+      user-select: none;
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 1.2s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Galería con descripciones */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap: 15px;
+    }
+    .gallery figure {
+      margin: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+    .gallery figure:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+    .gallery figcaption {
+      background-color: #f8f9fa;
+      color: #333;
+      font-size: 0.9rem;
+      padding: 8px 12px;
+      text-align: center;
+    }
+    .gallery img {
+      width: 100%;
+      display: block;
+      border-bottom: 1px solid #ddd;
+      border-radius: 12px 12px 0 0;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        padding: 10px 0;
+      }
+      .sidebar ul {
+        display: flex;
+        justify-content: space-around;
+      }
+      .sidebar li {
+        margin-bottom: 0;
+        padding: 10px 8px;
+        font-size: 1rem;
+        transform: none !important;
+      }
+      .main-content {
+        margin-left: 0;
+        padding: 20px;
+      }
+      footer { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <!-- Sidebar -->
+    <nav class="sidebar" role="navigation" aria-label="Menú principal">
+      <h2>Colegio San Juan</h2>
+      <ul>
+        <li class="active" onclick="mostrarSeccion('inicio', this)" tabindex="0">Inicio</li>
+        <li onclick="mostrarSeccion('reportes', this)" tabindex="0">Reportes Académicos</li>
+        <li onclick="mostrarSeccion('galerias', this)" tabindex="0">Galerías</li>
+        <li onclick="mostrarSeccion('contacto', this)" tabindex="0">Contacto</li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" role="main">
+      <!-- INICIO -->
+      <section id="inicio" class="fade-in-up">
+        <h2 class="text-primary">Inicio - Anuncios</h2>
+        <div class="card p-4 mb-4 bg-light">
+          <h4>Evento Escolar:</h4>
+          <p>El próximo sábado 10 de junio tendremos la feria cultural anual. ¡No faltes!</p>
+        </div>
+        <div class="card p-4 mb-4 bg-light">
+          <h4>Recordatorio:</h4>
+          <p>Entrega de proyectos de ciencias será el 5 de junio. Preparar presentaciones.</p>
+        </div>
+        <div class="card p-4 mb-4 bg-light">
+          <h4>Consejo para estudiantes:</h4>
+          <p>Organiza tu tiempo para el estudio y evita el estrés durante las evaluaciones.</p>
+        </div>
+      </section>
+
+      <!-- REPORTES -->
+      <section id="reportes" style="display:none;" class="fade-in-up">
+        <h2 class="text-secondary">Reportes Académicos</h2>
+        <div class="row mt-4">
+          <div class="col-md-4 mb-3">
+            <div class="card p-3 text-center bg-light">
+              <h4>Promedio General</h4>
+              <p class="h5 text-success">15.8</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="card p-3 text-center bg-light">
+              <h4>Asistencia</h4>
+              <p class="h5">92%</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="card p-3 text-center bg-light">
+              <h4>Comportamiento</h4>
+              <p class="h5">Excelente</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-5">
+          <h3 class="text-secondary">Últimas Evaluaciones</h3>
+          <ul class="list-group">
+            <li class="list-group-item">Matemáticas - 16 - 20/05/2025</li>
+            <li class="list-group-item">Ciencias - 15 - 19/05/2025</li>
+            <li class="list-group-item">Lenguaje - 16 - 18/05/2025</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- GALERIAS -->
+      <section id="galerias" style="display:none;" class="fade-in-up">
+        <h2 class="text-secondary">Galerías de Fotos</h2>
+        <p>Disfruta de las fotos de los eventos y actividades escolares.</p>
+        <div class="gallery mt-4">
+          <figure>
+            <img src="IMAGENES/Clubdb.jpeg" alt="Evento cultural" />
+            <figcaption>Evento cultural con participación activa de estudiantes y comunidad.</figcaption>
+          </figure>
+          <figure>
+            <img src="IMAGENES/SLIDER-6.jpg" alt="Clase en el aula" />
+            <figcaption>Estudiantes en aula durante una clase interactiva.</figcaption>
+          </figure>
+          <figure>
+            <img src="IMAGENES/images (1).jpeg" alt="Estudiantes en laboratorio" />
+            <figcaption>Alumnos realizando experimentos en laboratorio escolar.</figcaption>
+          </figure>
+          <figure>
+            <img src="IMAGENES/images.jpeg" alt="Deporte escolar" />
+            <figcaption>Actividad deportiva fomentando salud y trabajo en equipo.</figcaption>
+          </figure>
+          <figure>
+            <img src="IMAGENES/DSC08367.jpg" alt="Feria escolar" />
+            <figcaption>Feria escolar mostrando proyectos y actividades estudiantiles.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section id="contacto" style="display:none;" class="fade-in-up">
+        <h2 class="text-secondary">Contacto</h2>
+        <p>Comunícate con nosotros para mayor información o consultas.</p>
+        <form>
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" id="nombre" class="form-control" placeholder="Tu nombre" />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico:</label>
+            <input type="email" id="email" class="form-control" placeholder="ejemplo@correo.com" />
+          </div>
+          <div class="mb-3">
+            <label for="mensaje" class="form-label">Mensaje:</label>
+            <textarea id="mensaje" rows="4" class="form-control" placeholder="Escribe tu mensaje"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    Colegio San Juan © 2025 - SEBASTIAN RICARDO CUEVA COLAN
+  </footer>
+
+  <script>
+    function mostrarSeccion(seccionId, elem) {
+      // Ocultar todas las secciones
+      document.querySelectorAll('main > section').forEach(s => s.style.display = 'none');
+      // Mostrar la seleccionada
+      document.getElementById(seccionId).style.display = 'block';
+
+      // Cambiar active en menú
+      document.querySelectorAll('.sidebar li').forEach(li => li.classList.remove('active'));
+      elem.classList.add('active');
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
